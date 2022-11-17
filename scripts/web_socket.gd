@@ -1,6 +1,6 @@
 extends Node
 
-const ip = "192.168.137.135"
+const ip = "192.168.137.170"
 const port = 80
 
 var client
@@ -9,6 +9,9 @@ var txt = ''
 
 signal esq
 signal dir
+signal dist(x)
+signal perto
+signal longe
 
 
 func _ready():
@@ -50,11 +53,21 @@ func write_web_socket(_txt):
 
 
 func _message_interpreter(_txt):
-	var command = _txt
+	var command: String = _txt
 	
 	if command.strip_edges() == "esq botao_pressionado":
-		print(command)
+		#print(command)
 		emit_signal("esq")
 	if command.strip_edges() == "dir botao_pressionado":
-		print(command)
+		#print(command)
 		emit_signal("dir")
+	
+	if command.strip_edges().begins_with("dis"):
+		#print(command.split(" ")[1])
+		emit_signal("dist", command.split(" ")[1])
+	
+	if command.strip_edges() == "perto":
+		emit_signal("perto")
+	else:
+		emit_signal("longe")
+	

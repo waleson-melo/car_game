@@ -1,22 +1,79 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://assets/carrinho/sprite_0.png" type="Texture" id=1]
 [ext_resource path="res://scripts/player.gd" type="Script" id=2]
+[ext_resource path="res://levels/level_1.gd" type="Script" id=3]
+[ext_resource path="res://assets/carrinho/sprite_1.png" type="Texture" id=4]
+[ext_resource path="res://assets/carrinho/sprite_2.png" type="Texture" id=5]
+[ext_resource path="res://assets/ruas2/sprite_0.png" type="Texture" id=6]
+[ext_resource path="res://levels/rua.gd" type="Script" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "red_car",
+"speed": 10.0
+} ]
+
 [node name="Level1" type="Node2D"]
-position = Vector2( 9, 0 )
+script = ExtResource( 3 )
+
+[node name="Ruas" type="Node2D" parent="."]
+
+[node name="Rua1" type="Node2D" parent="Ruas"]
+position = Vector2( 267, -96 )
+script = ExtResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="Ruas/Rua1"]
+texture = ExtResource( 6 )
+
+[node name="Rua2" type="Node2D" parent="Ruas"]
+position = Vector2( 267, 96 )
+script = ExtResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="Ruas/Rua2"]
+texture = ExtResource( 6 )
+
+[node name="Rua3" type="Node2D" parent="Ruas"]
+position = Vector2( 267, 288 )
+script = ExtResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="Ruas/Rua3"]
+texture = ExtResource( 6 )
+
+[node name="Rua4" type="Node2D" parent="Ruas"]
+position = Vector2( 267, 480 )
+script = ExtResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="Ruas/Rua4"]
+texture = ExtResource( 6 )
 
 [node name="Player" type="KinematicBody2D" parent="."]
-position = Vector2( 483, 284 )
+position = Vector2( 247, 224 )
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="Player"]
-texture = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
+frames = SubResource( 3 )
+animation = "red_car"
+playing = true
+
+[node name="Label" type="Label" parent="."]
+margin_left = 7.0
+margin_top = 35.0
+margin_right = 47.0
+margin_bottom = 49.0
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 213.0
+margin_top = 18.0
+margin_right = 253.0
+margin_bottom = 32.0

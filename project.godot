@@ -11,11 +11,17 @@ config_version=4
 [application]
 
 config/name="car_game"
+run/main_scene="res://levels/level_1.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 WebSocket="*res://scripts/web_socket.gd"
+
+[display]
+
+window/size/width=512
+window/size/height=300
 
 [gui]
 
